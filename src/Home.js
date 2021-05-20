@@ -4,7 +4,7 @@ import useFetch from './useFetch'
 
 
 export default function Home() {
-    const {data: blogs , isPending , error} = useFetch("http://localhost:8000/blogs")
+    const {data: blogs , isPending , error} = useFetch("https://blogs-backend-roshan.herokuapp.com/blogs")
 
     return (
         <div className="home">
