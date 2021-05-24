@@ -2,7 +2,17 @@ import { useHistory, useParams } from "react-router";
 import useFetch from "./useFetch";
 
 const BlogDetail = () => {
-    const { _id } = useParams();
+    // const { _id } = useParams();
+    const id = useParams();
+    // Object.keys(id)[0];
+    const key = Object.keys(id)[0];
+    const _id = id[key];
+
+    //   var a = { a1: 'hello' };
+    //   Object.keys(a)[0];
+    //   var key = Object.keys(a)[0];
+    //   a[key];
+    // const { data: blog ,error , isPending } =  useFetch("https://blogs-backend-roshan.herokuapp.com/blogs/"+ 'ObjectId(60a69cc754886932849153c3)')
     const { data: blog ,error , isPending } =  useFetch("https://blogs-backend-roshan.herokuapp.com/blogs/"+ _id)
     const history = useHistory()
 
