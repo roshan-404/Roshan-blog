@@ -10,20 +10,20 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar/>
+          <Navbar/>
           <div className="content">
             <Switch>
               <Route exact path="/" >
-                <Home />
+                <Home/>
               </Route>
               <Route path="/create" >
-                <Create />
+                <Create/>
               </Route>
               <Route path="/blogs/:id" >
-                <BlogDetail />
+                <BlogDetail/>
               </Route>
               <Route path='*'>
-                <NotFound />
+                <NotFound/>
               </Route>
             </Switch>
           </div>   

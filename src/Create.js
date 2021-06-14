@@ -1,18 +1,20 @@
 import { useState } from "react";
 import  { useHistory } from 'react-router-dom'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css';
 
 const Create = () => {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
-    const [author, setAuthor] = useState('mario')
+    const [author, setAuthor] = useState('')
     const [isPending, setIsPending] = useState(false)
     const history = useHistory()
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        const blog = { title, body, author}
+        const blog = { title, body, author} 
 
-        setIsPending(true)
+        setIsPending(true)    
     
         fetch('https://blogs-backend-roshan.herokuapp.com/blogs', {
             method: 'POST',
@@ -36,24 +38,27 @@ const Create = () => {
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <label>Blog body:</label>
-                    <textarea
-                    required
-                    value={body}
-                    onChange={(e) => setBody(e.target.value)}
+                    <ReactQuill
+                    className="quill"
+                    theme="snow" 
+                    value={body} 
+                    onChange={setBody}
                     >
-                </textarea>
+                </ReactQuill>
                 <label>Blog Author</label>
-                <select
+                <input 
+                    type="text" 
+                    required 
                     value={author}
-                    onChange={(e)=> setAuthor(e.target.value)}>
-                    <option value="mario">mario</option>
-                    <option value="yoshi">yoshi</option>
-
-                </select>
+                    onChange={(e) => setAuthor(e.target.value)}
+                />
                 { !isPending && <button>Add Blog</button>}
                 { isPending && <button disabled>Adding blog...</button>}
             </form>
         </div>
+        // export function removeHTMLTags (str) {
+        //     return str.replace(/<[^>]*>?/gm, '');
+        //   };
      );
 }
  

@@ -1,5 +1,6 @@
 import { useHistory, useParams } from "react-router";
 import useFetch from "./useFetch";
+import ReactQuill from 'react-quill'
 
 const BlogDetail = () => {
     // const { _id } = useParams();
@@ -18,11 +19,13 @@ const BlogDetail = () => {
 
     console.log(_id);
     const handleClick = () => {
-        fetch('https://blogs-backend-roshan.herokuapp.com/blogs/'+ blog._id, {
-            method: 'DELETE'
-        }).then(() => {
-            history.push('/')
-        })
+        if(window.confirm(`Are you sure you want to delete : ${blog.title}`)) {
+            fetch('https://blogs-backend-roshan.herokuapp.com/blogs/'+ blog._id, {
+                method: 'DELETE'
+            }).then(() => {
+                history.push('/')
+            })
+        }
     }
     return (  
         <div className='blog-details'>
@@ -32,7 +35,14 @@ const BlogDetail = () => {
                 <article>
                     <h2>{blog.title}</h2>
                     <p>Written By: {blog.author}</p>
-                    <div>{blog.body}</div>
+                    {/* <div>{blog.body}</div> */}
+                    <div>
+                        <ReactQuill
+                        value={blog.body}
+                        readOnly={true}
+                        theme={"bubble"}
+                        />
+                    </div>
                     <button onClick={handleClick} >Delete</button>
                 </article>
             ) }
