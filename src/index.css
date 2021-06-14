@@ -22,6 +22,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .navbar .links {
   margin-left: auto;
 }
@@ -164,3 +165,10 @@
    color: #fff;
    text-decoration: none;
  }
+
+ @media only screen and (max-width: 600px) {
+  .navbar h1 {
+    /* color: rgb(91,52,218); */
+    font-size: 25px;
+  }
+}
